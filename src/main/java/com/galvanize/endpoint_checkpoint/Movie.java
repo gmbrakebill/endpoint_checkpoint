@@ -1,8 +1,11 @@
 package com.galvanize.endpoint_checkpoint;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Map;
 
 public class Movie {
     private String title;
@@ -96,4 +99,5 @@ public class Movie {
     public void setCredit(List<Credit> credit) {
         this.credit = credit;
     }
+
 }

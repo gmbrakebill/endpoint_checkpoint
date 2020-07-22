@@ -1,14 +1,16 @@
 package com.galvanize.endpoint_checkpoint;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/movies")
+@RequestMapping("movies")
+
 public class MovieController
 {
     @GetMapping("/movie")
@@ -39,4 +41,23 @@ public class MovieController
         movie.setCredit(Arrays.asList(credit));
         return movie;
     }
-}
+    @PostMapping("/gross/total")
+
+    public Map<String, Double> getTotal(@RequestBody List<Movie> movies) {
+        Map<String, Double> result = new HashMap<String, Double>();
+        DecimalFormat df = new DecimalFormat("#.##");
+
+        double sum = 0;
+
+        for (Movie movie : movies) sum += movie.getGross();
+
+        result.put("result", Double.valueOf(df.format(sum)));
+
+        return result;
+    }
+
+
+
+    }
+
+
